@@ -23,6 +23,7 @@ function returnProperty(objects, propertyName) {
 let objects = [
     { firstname: "Kadem", lastname: "Garnier", age: 23 },
     { firstname: "Enzo", lastname: "Loncle", age: 23 },
+    { firstname: "Khadim", lastname: "Cisse", age: 23 },
 ];
 console.log(returnProperty(objects, "firstname"));
 console.log(returnProperty(objects, "age"));
