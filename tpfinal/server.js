@@ -1,11 +1,24 @@
-// Initiation au serveur web avec Node.js
-// Lorsque je vais essayer de mettre en ligne mes jeux
-// TODO : mettre en ligne les jeux sur un serveur web
-
 const express = require("express");
 const app = express();
-const port = 3000;
+const path = require("path");
 
-app.listen(port, () => {
-    console.log("Le serveur écoute sur le port" + port);
+// Je défini mes routes
+// Celle-ci sera la route principale, la home page
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "launcher.html"));
+});
+
+// Celle-ci sera la route pour le jeu du pierre feuille ciseaux (home page du jeu)
+app.get("/pfc", (req, res) => {
+    res.sendFile(path.join(__dirname, "pfc.html"));
+});
+
+// Celle-ci sera la route pour le jeu du pierre feuille ciseaux (jeu)
+app.get("/pfcplay", (req, res) => {
+    res.sendFile(path.join(__dirname, "pfcplay.html"));
+});
+
+// je demarre mon serveur sur le port 8000 dispo à l'adresse localhost:8000
+app.listen(8000, () => {
+    console.log("Le serveur écoute sur le port 8000");
 });

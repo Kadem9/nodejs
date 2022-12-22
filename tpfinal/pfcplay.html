@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-    <title>Jeux.fr</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <title>Jeux.fr - PFC</title>
 </head>
 
 <body>
@@ -50,11 +52,17 @@
     </nav>
 
     <section class="section is-large has-background-dark has-text-primary-light">
-        <h1 class="title has-text-primary-light">Jeux.fr</h1>
-        <h2 class="subtitle has-text-primary-light">
-            Bienvenue sur jeux.fr <strong>V2 !</strong>
-        </h2>
-        <p>Une toute nouvelle interface, avec des nouveaux jeux.</p>
+        <form id="form">
+            <label for="choice">Quel est votre choix ?</label><br />
+            <input type="radio" id="pierre" name="choice" value="pierre" />
+            <label for="pierre">Pierre</label><br />
+            <input type="radio" id="papier" name="choice" value="papier" />
+            <label for="papier">Feuille</label><br />
+            <input type="radio" id="ciseaux" name="choice" value="ciseaux" />
+            <label for="ciseaux">Ciseaux</label><br />
+            <input type="submit" value="Jouer" />
+        </form>
+        <div id="result"></div>
     </section>
     <footer class="footer">
         <div class="content has-text-centered">
@@ -68,5 +76,40 @@
                 </p>
             </div>
         </footer>
+
+        <script>
+            const form = document.getElementById("form");
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                // Récupération du choix de l'utilisateur
+                const choice = document.querySelector(
+                    'input[name="choice"]:checked',
+                ).value;
+
+                // Génération du choix de l'ordinateur
+                const choices = ["pierre", "papier", "ciseaux"];
+                const computerChoice =
+                    choices[Math.floor(Math.random() * choices.length)];
+
+                // Détermination du résultat de la partie
+                let result;
+                if (choice === computerChoice) {
+                    result = "égalité";
+                } else if (
+                    (choice === "pierre" && computerChoice === "ciseaux") ||
+                    (choice === "papier" && computerChoice === "pierre") ||
+                    (choice === "ciseaux" && computerChoice === "papier")
+                ) {
+                    result = "Victoire";
+                } else {
+                    result = "Défaite";
+                }
+
+                // Affichage du résultat de la partie
+                const resultElement = document.getElementById("result");
+                resultElement.innerHTML = `Vous avez choisi ${choice}, l'ordinateur a choisi ${computerChoice}.<br> Résultat : ${result}.`;
+            });
+        </script>
     </body>
 </html>
