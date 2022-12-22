@@ -1,3 +1,4 @@
 ###> mon dossier api ###
 /api/node_modules/
 /tp/api/socket/node_modules
+/tpfinal/node_modules
