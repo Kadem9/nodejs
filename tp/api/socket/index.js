@@ -1,4 +1,5 @@
-const app = require("express")();
-const server = require("http").createServer(app);
-const socketIo = require("socket.io")(server);
-// J'importe mon socket.io
+// J'importe le module Express
+const express = require("express");
+
+// Je l'initalise dans une variable
+const app = express();

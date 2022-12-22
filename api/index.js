@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const parkings = require("./parkings.json");
 
-// Middlewareapp.use(express.json());
+// Tuto youtube pour apprendre à utiliser express
 
 app.get("/parkings", (req, res) => {
     res.status(200).json(parkings);
