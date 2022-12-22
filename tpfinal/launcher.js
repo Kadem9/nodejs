@@ -46,7 +46,10 @@ rl.question("Choisissez un jeu à lancer : ", (reponse) => {
             console.log("Vous devez saisir un nombre entre 1 et 4");
         } else {
             // Si c'est le cas, je lance le jeu correspondant
-            console.log(`Vous avez choisi le jeu ${userReponse}`);
+            console.log("Vous avez choisi le jeu " + userReponse);
+            // Nous allons lancer le jeu correspondant à la réponse de l'utilisateur
+            // Pour cela, nous allons utiliser la fonction require qui permet d'importer un module
+            require(games[userReponse - 1]);
         }
     }
     // Je ferme l'interface de lecture de ligne
