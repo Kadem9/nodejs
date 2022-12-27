@@ -2,7 +2,6 @@
 
 // Je stock donc la fonction readline.question dans une variable
 const readline = require("readline");
-const buf = require("buffer");
 
 // En suivant les étapes de la doc, il nous indique de créer une interface de lecture de ligne
 // Je crée donc une variable qui contient cette interface
@@ -18,6 +17,7 @@ const types = ["pierre", "feuille", "ciseaux"];
 // Il va falloir attribuer un type à l'ordinateur, pour cela nous allons utiliser la fonction Math.random()
 // Doc : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Math/random
 const iaType = types[Math.floor(Math.random() * types.length)];
+
 //console.log(iaType);
 
 // Comme pour le launcher, nous allons utiliser la méthode question de readline

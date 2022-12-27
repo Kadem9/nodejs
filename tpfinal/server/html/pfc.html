@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-    <title>Jeux.fr</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <title>Jeux.fr - PFC</title>
 </head>
 
 <body>
@@ -30,9 +32,11 @@
                     <a class="navbar-link">Nos jeux</a>
 
                     <div class="navbar-dropdown">
-                        <a class="navbar-item"> Pierre, feuille, ciseaux </a>
-                        <a class="navbar-item"> Pendu </a>
-                        <a class="navbar-item"> Puissance 4 [ à vneir] </a>
+                        <a class="navbar-item" href="pfc">
+                                Pierre, feuille, ciseaux
+                            </a>
+                        <a class="navbar-item" href="pendu">Pendu</a>
+                        <a class="navbar-item">Puissance 4 [ à vneir]</a>
                     </div>
                 </div>
             </div>
@@ -50,17 +54,26 @@
     </nav>
 
     <section class="section is-large has-background-dark has-text-primary-light">
-        <h1 class="title has-text-primary-light">Jeux.fr</h1>
-        <h2 class="subtitle has-text-primary-light">
-            Bienvenue sur jeux.fr <strong>V2 !</strong>
-        </h2>
-        <p>Une toute nouvelle interface, avec des nouveaux jeux.</p>
-    </section>
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                <strong>Jeux.fr</strong> by
-                <a href="https://fr.linkedin.com/in/kadem-garnier-495165203">Kadem</a
+        <h1 class="title has-text-primary-light">
+            <i class="fa-regular fa-hand"></i> Le jeu du Pierre/Feuille/Ciseaux
+        </h1>
+        <h2 class="subtitle has-text-primary-light mt-2">
+            <strong class="has-text-primary-light">
+                    <i class="fa-solid fa-circle-play me-2"></i>
+                    Rappel des règles :</strong
+                >
+                Le jeu se joue à deux joueurs. Chaque joueur choisit un des trois coups
+                possibles : pierre, feuille ou ciseaux. Le joueur qui choisit le coup le
+                plus fort gagne la manche. Si les deux joueurs choisissent le même coup,
+                la manche est nulle.
+            </h2>
+            <a href="pfcplay" class="button is-warning">Jouer</a>
+        </section>
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Jeux.fr</strong> by
+            <a href="https://fr.linkedin.com/in/kadem-garnier-495165203">Kadem</a
                     >. Le code source est disponible sur
                     <a href="https://github.com/Kadem9/nodejs/tree/main/tpfinal"
                         >Github</a

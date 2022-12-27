@@ -35,7 +35,7 @@
                         <a class="navbar-item" href="pfc">
                                 Pierre, feuille, ciseaux
                             </a>
-                        <a class="navbar-item"> Pendu </a>
+                        <a class="navbar-item" href="pendu">Pendu</a>
                         <a class="navbar-item"> Puissance 4 [ à vneir] </a>
                     </div>
                 </div>
@@ -54,26 +54,23 @@
     </nav>
 
     <section class="section is-large has-background-dark has-text-primary-light">
-        <h1 class="title has-text-primary-light">
-            <i class="fa-regular fa-hand"></i> Le jeu du Pierre/Feuille/Ciseaux
-        </h1>
-        <h2 class="subtitle has-text-primary-light mt-2">
-            <strong class="has-text-primary-light">
-                    <i class="fa-solid fa-circle-play me-2"></i>
-                    Rappel des règles :</strong
-                >
-                Le jeu se joue à deux joueurs. Chaque joueur choisit un des trois coups
-                possibles : pierre, feuille ou ciseaux. Le joueur qui choisit le coup le
-                plus fort gagne la manche. Si les deux joueurs choisissent le même coup,
-                la manche est nulle.
-            </h2>
-            <a href="pfcplay" class="button is-warning">Jouer</a>
-        </section>
-        <footer class="footer">
-            <div class="content has-text-centered">
-                <p>
-                    <strong>Jeux.fr</strong> by
-            <a href="https://fr.linkedin.com/in/kadem-garnier-495165203">Kadem</a
+        <form id="form">
+            <label for="choice">Quel est votre choix ?</label><br />
+            <input type="radio" id="pierre" name="choice" value="pierre" />
+            <label for="pierre">Pierre</label><br />
+            <input type="radio" id="papier" name="choice" value="papier" />
+            <label for="papier">Feuille</label><br />
+            <input type="radio" id="ciseaux" name="choice" value="ciseaux" />
+            <label for="ciseaux">Ciseaux</label><br />
+            <input type="submit" value="Jouer" />
+        </form>
+        <div id="result"></div>
+    </section>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Jeux.fr</strong> by
+                <a href="https://fr.linkedin.com/in/kadem-garnier-495165203">Kadem</a
                     >. Le code source est disponible sur
                     <a href="https://github.com/Kadem9/nodejs/tree/main/tpfinal"
                         >Github</a
@@ -81,5 +78,40 @@
                 </p>
             </div>
         </footer>
+
+        <script>
+            const form = document.getElementById("form");
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                // Récupération du choix de l'utilisateur
+                const choice = document.querySelector(
+                    'input[name="choice"]:checked',
+                ).value;
+
+                // Génération du choix de l'ordinateur
+                const choices = ["pierre", "papier", "ciseaux"];
+                const computerChoice =
+                    choices[Math.floor(Math.random() * choices.length)];
+
+                // Détermination du résultat de la partie
+                let result;
+                if (choice === computerChoice) {
+                    result = "égalité";
+                } else if (
+                    (choice === "pierre" && computerChoice === "ciseaux") ||
+                    (choice === "papier" && computerChoice === "pierre") ||
+                    (choice === "ciseaux" && computerChoice === "papier")
+                ) {
+                    result = "Victoire";
+                } else {
+                    result = "Défaite";
+                }
+
+                // Affichage du résultat de la partie
+                const resultElement = document.getElementById("result");
+                resultElement.innerHTML = `Vous avez choisi ${choice}, l'ordinateur a choisi ${computerChoice}.<br> Résultat : ${result}.`;
+            });
+        </script>
     </body>
 </html>

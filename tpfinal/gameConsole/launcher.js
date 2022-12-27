@@ -54,5 +54,4 @@ rl.question("Choisissez un jeu à lancer : ", (reponse) => {
     }
     // Je ferme l'interface de lecture de ligne
     // Todo améliorer le code pour que l'interface de lecture de ligne ne se ferme que lorsque l'utilisateur a choisi un jeu
-    rl.close();
 });

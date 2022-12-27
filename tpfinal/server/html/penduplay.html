@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <title>Jeux.fr - PFC</title>
+</head>
+
+<body>
+    <nav class="navbar has-background-warning" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <img src="https://gamesgamescdn.com/assets/gamesgames/gamesgames.fr.desktop-bcc829d91fdb24ae8b54f6dcd7e7b960079bbe615901cf8372f36a82f2dc0563.webp" width="112" height="28" />
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item">Accueil</a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">Nos jeux</a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="pfc">
+                                Pierre, feuille, ciseaux
+                            </a>
+                        <a class="navbar-item" href="pendu">Pendu</a>
+                        <a class="navbar-item"> Puissance 4 [ à vneir] </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-danger">
+                            <strong>Besoin d'aide ?</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section is-large has-background-dark has-text-primary-light">
+        <h3 class="is-size-2">Mot : <span id="word">_ _ _ _</span></h3>
+        <br />
+        <h2 class="is-size-4">
+            Voici les lettres que vous avez devinées : <span id="letters"></span>
+        </h2>
+        <h4 class="is-size-5">Il vous reste <span id="tries">6</span> coups ratés</h4>
+
+        <form>
+            <label for="letter">Entrez une lettre :</label>
+            <input class="input" type="text" id="letter" name="letter" maxlength="1" />
+            <button class="button is-danger mt-2" type="submit">Envoyer</button>
+        </form>
+    </section>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Jeux.fr</strong> by
+                <a href="https://fr.linkedin.com/in/kadem-garnier-495165203">Kadem</a
+                    >. Le code source est disponible sur
+                    <a href="https://github.com/Kadem9/nodejs/tree/main/tpfinal"
+                        >Github</a
+                    >
+                </p>
+            </div>
+        </footer>
+
+        <script>
+            // Notre tableau de mot à deviner
+            const arrayWord = "developpement";
+            // tableau des lettres du mot à deviner
+            const wordArray = word.split("");
+            // nombre de coups ratés maximum
+            const tries = 6;
+            // nombre de coups ratés de l'utilisateur
+            let missedTries = 0;
+            // tableau des lettres devinées par l'utilisateur
+            const guessedLetters = [];
+            // Je récupère mes titres pour les modifier avec la valeur
+            const wordElement = document.getElementById("word");
+            const lettersElement = document.getElementById("letters");
+            const triesElement = document.getElementById("tries");
+            // Je récupère mon form
+            const form = document.querySelector("form");
+            // Fonction qui met à jour l'affichage du mot à deviner et des lettres devinées
+            function updateWordAndLetters() {
+                let displayWord = "";
+                for (let i = 0; i < wordArray.length; i++) {
+                    if (guessedLetters.includes(wordArray[i])) {
+                        displayWord += wordArray[i] + " ";
+                    } else {
+                        displayWord += "_ ";
+                    }
+                }
+                wordElement.textContent = displayWord;
+                lettersElement.textContent = guessedLetters.join(", ");
+            }
+
+            // Fonction qui vérifie si le jeu est terminé
+            function checkGameOver() {
+                if (missedTries === tries) {
+                    alert("Défaite ! Le mot à deviner était : " + word);
+                    form.removeEventListener("submit", submitLetter);
+                } else if (!wordElement.textContent.includes("_")) {
+                    alert("Victoire !");
+                    form.removeEventListener("submit", submitLetter);
+                }
+            }
+
+            // Fonction appelée lorsque l'utilisateur soumet une lettre
+            function submitLetter(event) {
+                event.preventDefault();
+                const letter = document.getElementById("letter").value;
+                if (guessedLetters.includes(letter)) {
+                    alert("Vous avez déjà deviné cette lettre");
+                } else if (!wordArray.includes(letter)) {
+                    missedTries++;
+                    triesElement.textContent = tries - missedTries;
+                }
+                guessedLetters.push(letter);
+                updateWordAndLetters();
+                checkGameOver();
+            }
+
+            form.addEventListener("submit", submitLetter);
+        </script>
+    </body>
+</html>
